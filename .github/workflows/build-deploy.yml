@@ -1,16 +1,17 @@
 on:
   workflow_dispatch:
 
-name: Deploy
+name: Build & Deploy
 
 jobs:
-  build:
+  buildAndDeploy:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v4
     
     - name: Run linting rules and tests
       uses: actions/setup-node@v3
+    - run: npm install
     - run: npm run build
 
     - uses: GoogleCloudPlatform/github-actions/setup-gcloud@0.1.3
